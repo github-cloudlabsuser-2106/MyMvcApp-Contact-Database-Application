@@ -8,6 +8,9 @@ public class UserController : Controller
 {
     public static System.Collections.Generic.List<User> userlist = new System.Collections.Generic.List<User>();
 
+public UserController(){
+    
+}
         // GET: User
         public ActionResult Index()
         {
@@ -82,6 +85,18 @@ public class UserController : Controller
                 return NotFound();
             }
             return View(user);
+        }
+
+        // GET: User/Search
+        public ActionResult Search(string searchTerm)
+        {
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                return View("Index", userlist);
+            }
+
+            var filteredUsers = userlist.Where(u => u.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
+            return View("Index", filteredUsers);
         }
 
         // POST: User/Delete/5

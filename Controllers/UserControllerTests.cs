@@ -4,6 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using MyMvcApp.Controllers;
 using MyMvcApp.Models;
 using Xunit;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using MyMvcApp.Controllers;
+using MyMvcApp.Models;
 
 namespace MyMvcApp.Tests
 {
@@ -20,8 +25,8 @@ namespace MyMvcApp.Tests
                 new User { Id = 2, Name = "Jane Doe", Email = "jane@example.com" }
             };
 
-            UserController.userlist = _userList;
             _controller = new UserController();
+            UserController.userlist = _userList;
         }
 
         [Fact]
